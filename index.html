@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>乐鱼体育 · 信息卡片</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f5f7;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1e1f24;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 1120px;
+      width: 100%;
+    }
+
+    /* 主视觉 – 柔和卡片头部 */
+    .hero {
+      background: #ffffffcc;
+      backdrop-filter: blur(2px);
+      border-radius: 28px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.02);
+      padding: 2.8rem 2.2rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 470;
+      letter-spacing: -0.02em;
+      color: #1b1c21;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      color: #4d4f59;
+      max-width: 600px;
+      margin: 0 auto;
+      border-top: 1px solid #e6e8ec;
+      padding-top: 1.2rem;
+      margin-top: 0.8rem;
+    }
+
+    /* 两栏布局 – 用途 + 人群 */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2.2rem;
+    }
+
+    @media (max-width: 700px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02), 0 0 0 1px #e9ebef;
+      padding: 1.8rem 1.6rem 2rem 1.6rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04), 0 0 0 1px #d0d4dc;
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      font-weight: 450;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card li {
+      padding: 0.4rem 0 0.4rem 1.2rem;
+      position: relative;
+      color: #2f313a;
+    }
+
+    .card li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      font-weight: 600;
+      color: #87909e;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 0.5rem;
+      margin-top: 0.8rem;
+    }
+
+    .tag {
+      background: #f0f2f6;
+      border-radius: 30px;
+      padding: 0.2rem 1rem 0.3rem 1rem;
+      font-size: 0.9rem;
+      color: #2f323b;
+    }
+
+    /* 自然链接段落 – 第三块卡片，有叙述感 */
+    .story-card {
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.02), 0 0 0 1px #e9ebef;
+      padding: 2rem 2rem 2.2rem 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .story-card p {
+      margin-bottom: 1.2rem;
+    }
+
+    .story-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .story-card a {
+      color: #0f62fe;
+      text-decoration: none;
+      font-weight: 460;
+      border-bottom: 1px solid transparent;
+      transition: border 0.15s;
+    }
+
+    .story-card a:hover {
+      border-bottom-color: #0f62fe;
+    }
+
+    /* FAQ 摘要 – 简洁折叠风格 */
+    .faq-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .faq-item {
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 0 0 1px #e3e6ec;
+      padding: 1.2rem 1.6rem;
+      transition: background 0.1s;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 470;
+      font-size: 1.05rem;
+      margin-bottom: 0.2rem;
+      color: #1a1c23;
+    }
+
+    .faq-item span {
+      color: #4c4f5a;
+      font-size: 0.95rem;
+    }
+
+    /* 页脚 */
+    .footer-note {
+      text-align: center;
+      padding: 2rem 0 0.8rem 0;
+      color: #8a8d99;
+      font-size: 0.85rem;
+    }
+
+    .footer-note a {
+      color: #1e1f24;
+      text-decoration: none;
+      border-bottom: 1px solid #d0d3db;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 主视觉 -->
+  <div class="hero">
+    <h1>乐鱼体育</h1>
+    <div class="sub">
+      从运动数据到社群互动，一个关于陪伴与节奏的信息空间。
+    </div>
+  </div>
+
+  <!-- 信息卡片网格：用途 + 适合人群 -->
+  <div class="grid-2col">
+    <!-- 用途卡片 -->
+    <div class="card">
+      <h2>常见用途</h2>
+      <ul>
+        <li>浏览赛事信息与动态数据</li>
+        <li>追踪队伍、选手及赛季节奏</li>
+        <li>阅读运动话题与内容更新</li>
+        <li>获取活动资讯与时间线</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">赛事</span>
+        <span class="tag">动态</span>
+        <span class="tag">数据</span>
+        <span class="tag">资讯</span>
+      </div>
+    </div>
+
+    <!-- 适合人群卡片 -->
+    <div class="card">
+      <h2>适合人群</h2>
+      <ul>
+        <li>关注体育赛事节奏的普通爱好者</li>
+        <li>喜欢浏览数据与趋势的轻度用户</li>
+        <li>寻找集中内容阅读场景的人</li>
+        <li>对运动文化有好奇的观察者</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">爱好者</span>
+        <span class="tag">浏览者</span>
+        <span class="tag">内容向</span>
+        <span class="tag">轻参与</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 自然链接段落卡片（叙述风格） -->
+  <div class="story-card">
+    <p>
+      大多数人最初只是想在碎片时间里找一个能安静看看体育消息的地方。没有太多复杂功能，也没有频繁的弹窗，就是一些队伍近况、赛季走向和偶尔出现的讨论。后来发现，这类平台最珍贵的其实是那种稳定的信息节奏——你知道什么时间会更新什么内容，不用反复刷新。
+    </p>
+    <p>
+      在中文语境里，<a href="https://indexleyu.com.cn">乐鱼体育</a> 恰好是这样一个聚合了日常赛事与内容更新的站点。它没有夸张的标语，页面设计比较淡，重点放在了信息本身。如果你也只是想偶尔看看运动数据、读读最新动态，或者找个干净的浏览起点，那里可能刚好对味。
+    </p>
+    <p>
+      当然，任何平台都有更适合自己的使用方式。你可以把它当作一个简单的信息卡片墙，也可以只关注某几个栏目。重要的是找到一个让你觉得舒服的信息距离。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要卡片 -->
+  <div class="faq-section">
+    <div class="faq-item">
+      <strong>这个网站主要提供什么？</strong>
+      <span>围绕体育赛事的内容聚合与基础数据展示，偏向信息浏览与追踪。</span>
+    </div>
+    <div class="faq-item">
+      <strong>需要注册或下载吗？</strong>
+      <span>大部分内容可以直接浏览，具体功能以页面实际情况为准。</span>
+    </div>
+    <div class="faq-item">
+      <strong>适合深度体育迷还是普通用户？</strong>
+      <span>更偏向普通浏览者与内容关注者，深度功能有限，节奏轻松。</span>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer-note">
+    <span>关于 <a href="https://indexleyu.com.cn">乐鱼体育</a> · 信息卡片式介绍</span>
+  </div>
+
+</div>
+</body>
+</html>

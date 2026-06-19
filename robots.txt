@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://arlan65tock.github.io/indexleyu-com-cn-2/sitemap.xml
