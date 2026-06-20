@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ggbet · 资料索引页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9f7f4;
+            color: #2e2b28;
+            font-family: system-ui, 'Segoe UI', 'Noto Sans', sans-serif;
+            line-height: 1.65;
+            padding: 2rem 1.2rem;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            background: #fefcf9;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            padding: 2rem 2.2rem;
+        }
+
+        /* 导航区 */
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e6dfd8;
+        }
+
+        .nav-marker {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #7c7068;
+            background: #efebe7;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            color: #4a443f;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #b3a69c;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 450;
+            letter-spacing: -0.2px;
+            color: #2b2622;
+            margin: 0.8rem 0 0.2rem;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #70665e;
+            margin-bottom: 2rem;
+            border-left: 4px solid #d1c6bc;
+            padding-left: 1rem;
+        }
+
+        .intro-block {
+            background: #f3f0eb;
+            padding: 1.4rem 1.8rem;
+            border-radius: 16px;
+            margin: 2rem 0 2.4rem;
+            font-size: 0.98rem;
+            color: #3d3732;
+        }
+
+        .intro-block p {
+            margin: 0.5rem 0;
+        }
+
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+            margin: 2.4rem 0;
+        }
+
+        .scene-card {
+            background: #fcfaf8;
+            border: 1px solid #e5ddd6;
+            border-radius: 18px;
+            padding: 1.4rem 1.8rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .scene-card:hover {
+            box-shadow: 0 4px 14px rgba(80, 60, 40, 0.06);
+        }
+
+        .scene-card h3 {
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: #342f2a;
+            margin-bottom: 0.5rem;
+        }
+
+        .scene-card p {
+            margin: 0.2rem 0;
+            color: #4d4640;
+        }
+
+        .divider-light {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #dcd3ca, transparent);
+            margin: 1.2rem 0 0.8rem;
+        }
+
+        .faq-mini {
+            background: #f4f0eb;
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            margin: 2.4rem 0 1.6rem;
+        }
+
+        .faq-mini details {
+            margin: 0.6rem 0;
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed #d4cbc2;
+        }
+
+        .faq-mini details:last-child {
+            border-bottom: none;
+        }
+
+        .faq-mini summary {
+            cursor: pointer;
+            font-weight: 450;
+            color: #3b3530;
+            padding: 0.2rem 0;
+        }
+
+        .faq-mini summary::marker {
+            color: #a49286;
+        }
+
+        .faq-mini p {
+            margin: 0.6rem 0 0.2rem 1.2rem;
+            color: #4e4640;
+            font-size: 0.95rem;
+        }
+
+        .tip-box {
+            background: #e9e3dc;
+            border-left: 6px solid #b3a193;
+            padding: 1rem 1.5rem;
+            border-radius: 0 14px 14px 0;
+            margin: 1.8rem 0;
+            font-size: 0.95rem;
+        }
+
+        .tip-box strong {
+            color: #2f2924;
+        }
+
+        .footer-note {
+            margin-top: 2.8rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e2dad2;
+            font-size: 0.88rem;
+            color: #70665e;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.6rem;
+        }
+
+        .footer-note a {
+            color: #4a3f38;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #c9bdb3;
+        }
+
+        .footer-note a:hover {
+            color: #1f1b18;
+            text-decoration-color: #6b5d53;
+        }
+
+        @media (max-width: 560px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .page {
+                padding: 1.5rem 1.2rem;
+                border-radius: 18px;
+            }
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.6rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            .scene-card {
+                padding: 1.2rem 1.2rem;
+            }
+            .intro-block {
+                padding: 1rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <nav class="nav">
+        <span class="nav-marker">索引 · 整理</span>
+        <div class="nav-links">
+            <a href="#">概述</a>
+            <a href="#">场景</a>
+            <a href="#">说明</a>
+        </div>
+    </nav>
+
+    <h1>关于 ggbet 的信息整理</h1>
+    <div class="subhead">
+        —— 从资料归档和索引的角度，梳理几个常见的理解维度
+    </div>
+
+    <div class="intro-block">
+        <p>日常浏览中，关于 <a href="https://site-ggbet.com" style="color: #3d3732; text-decoration: underline; text-underline-offset: 2px;">ggbet</a> 的讨论和提及往往分散在不同地方。这个页面尝试把零散信息做一点轻量整理，不是评测，也不是推荐，更像一个让后续查阅更方便的目录式笔记。</p>
+        <p>如果你刚接触这个词，下面三个场景模块或许能帮你更快了解它主要出现在哪些语境里。每个模块都只是概括性的观察，细节还需要自己去核实。</p>
+    </div>
+
+    <div class="card-grid">
+        <div class="scene-card">
+            <h3>场景一 · 信息检索中的高频关联</h3>
+            <p>在资料收集时，<strong>ggbet</strong> 常常和“平台界面”、“数据面板”、“选项分类”这类词一同出现。不少讨论围绕着它的呈现方式和内容组织展开，尤其是类别划分和筛选逻辑。这类信息多见于社区整理帖或功能对比表里。</p>
+            <p style="margin-top: 0.5rem; color: #6b5f56;">建议：如果要做更细致的横向比较，最好同时参考两到三个不同的信息源。</p>
+        </div>
+
+        <div class="scene-card">
+            <h3>场景二 · 功能介绍与模块说明</h3>
+            <p>一部分用户关注的是 <a href="https://site-ggbet.com" style="color: #3d3732; text-decoration: underline; text-underline-offset: 2px;">ggbet</a> 内部各个功能模块的划分，例如实时动态、历史记录、筛选标签等。从索引的角度看，这些模块的命名和入口位置经常被截图存档，用于版本变化的对照。整理时建议留意时间戳，因为界面调整后旧截图容易产生误导。</p>
+        </div>
+
+        <div class="scene-card">
+            <h3>场景三 · 使用习惯与偏好记录</h3>
+            <p>在论坛或个人笔记里，偶尔能看到一些使用倾向的总结：比如更常用哪些分类标签、默认显示哪些信息块、怎么调整浏览节奏等等。这些内容虽然不是官方说明，但作为用户自发的经验记录，对理解某个平台的常用路径有一定参考价值。不过每个人的习惯差异较大，不必照搬。</p>
+        </div>
+    </div>
+
+    <div class="faq-mini">
+        <details>
+            <summary>为什么这个页面只做整理而不做评价？</summary>
+            <p>因为对一个平台或服务的认知往往因人而异，整理信息源和常见讨论角度，比给出一个固定结论更有助于后续形成自己的判断。这里只是一个索引起点。</p>
+        </details>
+        <details>
+            <summary>怎样进一步核实 ggbet 的相关资料？</summary>
+            <p>可以尝试直接浏览 <a href="https://site-ggbet.com" style="color: #3d3732; text-decoration: underline;">ggbet</a> 的页面，同时结合不同的社区讨论和存档截图，交叉比对。不同时间点的记录可能会呈现功能或界面上的差异。</p>
+        </details>
+        <details>
+            <summary>这些场景模块会定期更新吗？</summary>
+            <p>本页是一个静态的索引页，不会自动同步外部变化。如果需要最新的信息，建议以官方渠道或实时社区动态为准。</p>
+        </details>
+    </div>
+
+    <div class="tip-box">
+        <strong>一点提示</strong>：在翻阅各类相关文章或截图时，最好留意发布的时间与上下文。互联网上的信息片段容易脱离原意，保持克制的参考心态，会让整理工作更有效。
+    </div>
+
+    <div class="footer-note">
+        <span>资料索引 · 仅作整理参考</span>
+        <span>源站链接：<a href="https://site-ggbet.com">ggbet</a></span>
+    </div>
+</div>
+</body>
+</html>
